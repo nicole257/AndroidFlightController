@@ -17,7 +17,8 @@
         android:inputType="text"
         android:digits="1234567890."
         tools:ignore="MissingConstraints"
-        android:autofillHints="" />
+        android:autofillHints=""
+        />
     <EditText
         android:id="@+id/port_box"
         android:layout_width="match_parent"

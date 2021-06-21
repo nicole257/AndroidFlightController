@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 if (seekBar != null) {
-                    vm.setRudder(seekBar.progress.toFloat())
+                    var progAbs = seekBar.progress.toFloat()
+                    vm.setRudder((progAbs - 50)/50)
                 }
             }
         })
@@ -39,7 +40,9 @@ class MainActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 if (seekBar != null) {
-                    vm.setThrottle(seekBar.progress.toFloat())
+                    var progAbs = seekBar.progress.toFloat()
+                    //vm.setThrottle(seekBar.progress.toFloat())
+                    vm.setThrottle(progAbs/100)
                 }
             }
         })
@@ -57,17 +60,5 @@ class MainActivity : AppCompatActivity() {
         vm.setAileron(a)
         vm.setElevator(e)
     }
-    fun setRudder(){
-        val RudderBar = findViewById<SeekBar>(R.id.rudder_bar)
-        val prog = RudderBar.progress
-        // maybe should make rudder into values between 1 to -1
-        vm.setRudder(prog.toFloat())
-    }
 
-    fun setThrottle(){
-        val ThrottleBar = findViewById<SeekBar>(R.id.rudder_bar)
-        val prog = ThrottleBar.progress
-        // maybe should make rudder into values between 1 to -1
-        vm.setRudder(prog.toFloat())
-    }
 }
