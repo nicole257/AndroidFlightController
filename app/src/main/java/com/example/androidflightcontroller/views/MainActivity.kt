@@ -36,7 +36,13 @@ class MainActivity : AppCompatActivity() {
         seekThrottle?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar,
-                                           progress: Int, fromUser: Boolean) {}
+                                           progress: Int, fromUser: Boolean) {
+                if (seek != null) {
+                    var progAbs = progress.toFloat()
+                    //vm.setThrottle(seekBar.progress.toFloat())
+                    vm.setThrottle(progAbs/100)
+                }
+            }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 if (seekBar != null) {
@@ -49,9 +55,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun connectByInput(view: View) {
-        val ipEditBox = view.findViewById<EditText>(R.id.ip_box)
+        var ipEditBox = findViewById<EditText>(R.id.ip_box)
         val ip = ipEditBox.text.toString()
-        val portEditBox = view.findViewById<EditText>(R.id.port_box)
+        val portEditBox = findViewById<EditText>(R.id.port_box)
         val port = portEditBox.text.toString()
         vm.connect(ip, port)
     }
