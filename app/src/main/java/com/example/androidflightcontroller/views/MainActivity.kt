@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.connect_button).setOnClickListener { connectByInput(it) }
 
+        val joystick: Joystick = findViewById(R.id.joystick)
+        joystick.onChange = { aileron: Float, elevator: Float ->
+            vm.setAileron(aileron)
+            vm.setElevator(elevator)
+        }
+
         val seekRudder = findViewById<SeekBar>(R.id.rudder_bar)
         seekRudder?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
