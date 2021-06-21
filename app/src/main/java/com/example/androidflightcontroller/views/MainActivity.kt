@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val seekThrottle = findViewById<SeekBar>(R.id.rudder_bar)
+        val seekThrottle = findViewById<SeekBar>(R.id.throttle_bar)
         seekThrottle?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar,

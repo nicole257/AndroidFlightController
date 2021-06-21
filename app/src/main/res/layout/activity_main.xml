@@ -46,46 +46,46 @@
         android:layout_height="0dp"
         android:layout_weight="6"
         android:orientation="horizontal">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/joystick_layout"
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="50dp"/>
-
-        <com.example.androidflightcontroller.views.Joystick
-            android:id="@+id/joystick"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-44dp" />
-
         <SeekBar
             android:id="@+id/throttle_bar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="306dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:progress="0"
             android:min="0"
             android:max="100"
             android:rotation="270" />
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_margin="1sp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:foregroundGravity="center"
+            android:layout_marginTop="1dp">
+
+        <com.example.androidflightcontroller.views.Joystick
+            android:id="@+id/joystick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-100p" />
+        </FrameLayout>
 
 
         <SeekBar
             android:id="@+id/rudder_bar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="329dp"
+            android:layout_height="22dp"
             android:progress="50"
+            android:layout_marginTop="300dp"
             android:layout_weight="1"
             android:min="0"
             android:max="100" />
 
-
-
     </LinearLayout>
-
 
 </LinearLayout>
