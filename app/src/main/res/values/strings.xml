@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidFlightController</string>
+    <string name="app_name">Android Flight Controller</string>
     <string name="enter_ip_address">Enter IP address</string>
     <string name="enter_port_number">Enter port number</string>
     <string name="connect">Connect</string>
