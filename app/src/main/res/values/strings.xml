@@ -4,4 +4,10 @@
     <string name="enter_port_number">Enter port number</string>
     <string name="connect">Connect</string>
     <string name="disconnect">Disconnect</string>
+    <string name="disconnectSuccess">Disconnected...</string>
+    <string name="disconnectError">Could not disconnect, please try again</string>
+    <string name="connectSuccess">Connected, enjoy your flight!</string>
+    <string name="connectError">Could not connect, please try again</string>
+
+
 </resources>
