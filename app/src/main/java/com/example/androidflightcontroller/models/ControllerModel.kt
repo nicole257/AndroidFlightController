@@ -21,8 +21,8 @@ class ControllerModel {
     fun connect(ipAdd: String, portNum: Int) {
         dispatchQueue.put(Runnable {
             fg = Socket(ipAdd, portNum)
-            isConnected = true
             out = PrintWriter(fg!!.getOutputStream(), true)
+            isConnected = true
         })
     }
         fun setAileron(data: Float){
@@ -39,13 +39,13 @@ class ControllerModel {
         }
         fun setThrottle(data: Float){
             if (isConnected == true)
-                sendData("throttle", data)
+                sendData("current-engine/throttle", data)
         }
 
-        // do this on different thread?
         private fun sendData(name: String, value: Float){
             dispatchQueue.put(Runnable {
-                out?.print("set /controls/flight/$name $value\r\n")
+                println("set /controls/flight/$name $value\r\n")
+                out?.print("set /controls/flight/$name $value \r\n")
                 out?.flush()
             })
         }

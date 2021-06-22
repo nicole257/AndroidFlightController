@@ -28,7 +28,13 @@ class MainActivity : AppCompatActivity() {
         seekRudder?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar,
-                                           progress: Int, fromUser: Boolean) {}
+                                           progress: Int, fromUser: Boolean) {
+                if (seek != null) {
+                    var progAbs = progress.toFloat()
+                    //vm.setThrottle(seekBar.progress.toFloat())
+                    vm.setRudder((progAbs - 50) / 50)
+                }
+            }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 if (seekBar != null) {
