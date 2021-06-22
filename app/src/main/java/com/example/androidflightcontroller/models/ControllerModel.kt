@@ -27,25 +27,25 @@ class ControllerModel {
     }
         fun setAileron(data: Float){
             if (isConnected == true)
-                sendData("aileron", data)
+                sendData("flight/aileron", data)
         }
         fun setRudder(data: Float){
             if (isConnected == true)
-                sendData("rudder", data)
+                sendData("flight/rudder", data)
         }
         fun setElevator(data: Float){
             if (isConnected == true)
-                sendData("elevator", data)
+                sendData("flight/elevator", data)
         }
         fun setThrottle(data: Float){
             if (isConnected == true)
-                sendData("current-engine/throttle", data)
+                sendData("engines/current-engine/throttle", data)
         }
 
         private fun sendData(name: String, value: Float){
             dispatchQueue.put(Runnable {
-                println("set /controls/flight/$name $value\r\n")
-                out?.print("set /controls/flight/$name $value \r\n")
+                println("set /controls/$name $value\r\n")
+                out?.print("set /controls/$name $value \r\n")
                 out?.flush()
             })
         }
