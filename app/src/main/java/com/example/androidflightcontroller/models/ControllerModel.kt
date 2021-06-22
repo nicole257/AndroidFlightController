@@ -11,14 +11,22 @@ class ControllerModel {
         private var stop: Boolean = false
         private var dispatchQueue = LinkedBlockingQueue<Runnable>()
 
-    init{
+    private fun startFlying(){
         Thread{
             while(!stop){
                 dispatchQueue.take().run()
             }
         }.start()
     }
+    init{
+        startFlying()
+    }
+
     fun connect(ipAdd: String, portNum: Int) {
+        if (stop){
+            stop = false
+            startFlying()
+        }
         dispatchQueue.put(Runnable {
             fg = Socket(ipAdd, portNum)
             out = PrintWriter(fg!!.getOutputStream(), true)
