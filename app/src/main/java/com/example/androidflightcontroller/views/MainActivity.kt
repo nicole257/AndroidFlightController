@@ -71,7 +71,14 @@ class MainActivity : AppCompatActivity() {
         val ip = ipEditBox.text.toString()
         val portEditBox = findViewById<EditText>(R.id.port_box)
         val port = portEditBox.text.toString()
-        vm.connect(ip, port)
+        try{
+            vm.connect(ip, port)
+            // make text of connection
+        }
+        catch(e: Exception){
+            // make text of error
+        }
+
     }
 
     fun setJoystickData(a: Float, e: Float){
