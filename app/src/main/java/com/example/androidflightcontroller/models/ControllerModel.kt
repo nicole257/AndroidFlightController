@@ -1,5 +1,6 @@
 package com.example.androidflightcontroller.models
 
+import java.io.IOException
 import java.io.PrintWriter
 import java.net.Socket
 import java.util.concurrent.LinkedBlockingQueue
@@ -11,15 +12,13 @@ class ControllerModel {
         private var stop: Boolean = false
         private var dispatchQueue = LinkedBlockingQueue<Runnable>()
 
+    init{ startFlying() }
     private fun startFlying(){
         Thread{
             while(!stop){
-                dispatchQueue.take().run()
+                try { dispatchQueue.take().run() } catch(e: Exception){ e.printStackTrace() }
             }
         }.start()
-    }
-    init{
-        startFlying()
     }
     fun isConnected(): Boolean{
         return this.isConnected
@@ -32,12 +31,23 @@ class ControllerModel {
         // try to connect to socket outside of queue, to get immediate feedback
             //dispatchQueue.put(Runnable {
         Thread {
-            fg = Socket(ipAdd, portNum)
-            out = PrintWriter(fg!!.getOutputStream(), true)
-            if (fg != null)
-                isConnected = true
+            try {
+                fg = Socket(ipAdd, portNum)
+                out = PrintWriter(fg!!.getOutputStream(), true)
+                if (fg != null)
+                    isConnected = true
+            }
+            catch (e: Exception){e. printStackTrace()}
         }.start()
         //})
+    }
+    fun disconnect() {
+        dispatchQueue.put(Runnable {
+            stop = true
+            isConnected = false
+            out?.close()
+            fg?.close()
+        })
     }
         fun setAileron(data: Float){
             if (isConnected == true)
@@ -58,18 +68,13 @@ class ControllerModel {
 
         private fun sendData(name: String, value: Float){
             dispatchQueue.put(Runnable {
-                println("set /controls/$name $value\r\n")
-                out?.print("set /controls/$name $value \r\n")
-                out?.flush()
+                try {
+                    out?.print("set /controls/$name $value \r\n")
+                    out?.flush()
+                }
+                catch(e: IOException){ e.printStackTrace() }
             })
         }
 
-        fun disconnect() {
-            dispatchQueue.put(Runnable {
-                stop = true
-                isConnected = false
-                out?.close()
-                fg?.close()
-            })
-        }
+
 }
