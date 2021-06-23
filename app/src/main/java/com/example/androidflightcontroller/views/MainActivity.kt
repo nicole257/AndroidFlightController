@@ -85,14 +85,18 @@ class MainActivity : AppCompatActivity() {
         val portEditBox = findViewById<EditText>(R.id.port_box)
         val port = portEditBox.text.toString()
         val messageText = findViewById<TextView>(R.id.message)
-        try{
+        //try{
             vm.connect(ip, port)
+            Thread.sleep(1500)
+            if (vm.isConnected()){
             messageText.text = getString(R.string.connectSuccess)
             messageText.setTextColor(Color.GREEN)
             messageText.visibility = View.VISIBLE
             // make text of connection
         }
-        catch(e: Exception){
+        //catch(e: Exception){
+        else{
+            //e.printStackTrace()
             messageText.text = getString(R.string.connectError)
             messageText.setTextColor(Color.RED)
             messageText.visibility = View.VISIBLE

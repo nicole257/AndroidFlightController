@@ -10,6 +10,9 @@ class ControllerViewModel: ViewModel() {
         fun connect(ip: String, port: String) {
             model.connect(ip, port.toInt())
         }
+        fun isConnected(): Boolean{
+            return model.isConnected()
+        }
 
         fun setAileron(data: Float){
             model.setAileron(data)

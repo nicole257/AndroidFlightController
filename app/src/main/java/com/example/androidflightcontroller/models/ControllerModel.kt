@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue
 class ControllerModel {
         private var fg: Socket? = null
         private var out: PrintWriter? = null
-        private var isConnected: Boolean? = false
+        private var isConnected: Boolean = false
         private var stop: Boolean = false
         private var dispatchQueue = LinkedBlockingQueue<Runnable>()
 
@@ -21,17 +21,23 @@ class ControllerModel {
     init{
         startFlying()
     }
-
+    fun isConnected(): Boolean{
+        return this.isConnected
+    }
     fun connect(ipAdd: String, portNum: Int) {
         if (stop){
             stop = false
             startFlying()
         }
-        dispatchQueue.put(Runnable {
+        // try to connect to socket outside of queue, to get immediate feedback
+            //dispatchQueue.put(Runnable {
+        Thread {
             fg = Socket(ipAdd, portNum)
             out = PrintWriter(fg!!.getOutputStream(), true)
-            isConnected = true
-        })
+            if (fg != null)
+                isConnected = true
+        }.start()
+        //})
     }
         fun setAileron(data: Float){
             if (isConnected == true)
