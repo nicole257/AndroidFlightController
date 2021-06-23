@@ -11,5 +11,6 @@
     <string name="emptyIPField">Please enter IP address</string>
     <string name="emptyPortField">Please enter port number</string>
     <string name="emptyFields">Please enter IP address and port number</string>
+    <string name="invalidIP">Please enter a valid IP address</string>
 
 </resources>
