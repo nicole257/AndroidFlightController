@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
 
         // got ip and port
         vm.connect(ip, port)
-        Thread.sleep(1000)
+        Thread.sleep(500)
         if (vm.isConnected()){
             setMessageOn(messageText, getString(R.string.connectSuccess), Color.GREEN)
             /*messageText.text = getString(R.string.connectSuccess)
