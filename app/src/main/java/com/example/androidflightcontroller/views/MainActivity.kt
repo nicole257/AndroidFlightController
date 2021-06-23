@@ -79,27 +79,54 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun setMessageOn(messageText: TextView, text: String, color: Int){
+        messageText.text = text
+        messageText.setTextColor(color)
+        messageText.visibility = View.VISIBLE
+    }
+    private fun hasValidInput(ip: String, port: String, messageText: TextView): Boolean{
+        if (ip.isEmpty() && port.isEmpty()){
+            setMessageOn(messageText, getString(R.string.emptyFields), Color.RED)
+            return false
+        }
+        if(ip.isEmpty()){
+            setMessageOn(messageText, getString(R.string.emptyIPField), Color.RED)
+            return false
+        }
+        if(port.isEmpty()){
+            setMessageOn(messageText, getString(R.string.emptyPortField), Color.RED)
+            return false
+        }
+        return true
+    }
     private fun connectByInput() {
         val ipEditBox = findViewById<EditText>(R.id.ip_box)
         val ip = ipEditBox.text.toString()
         val portEditBox = findViewById<EditText>(R.id.port_box)
         val port = portEditBox.text.toString()
         val messageText = findViewById<TextView>(R.id.message)
-        //try{
-            vm.connect(ip, port)
-            Thread.sleep(1500)
-            if (vm.isConnected()){
-            messageText.text = getString(R.string.connectSuccess)
+
+        val valid = hasValidInput(ip, port, messageText)
+        if (!valid)
+            return
+
+        // got ip and port
+        vm.connect(ip, port)
+        Thread.sleep(1000)
+        if (vm.isConnected()){
+            setMessageOn(messageText, getString(R.string.connectSuccess), Color.GREEN)
+            /*messageText.text = getString(R.string.connectSuccess)
             messageText.setTextColor(Color.GREEN)
-            messageText.visibility = View.VISIBLE
+            messageText.visibility = View.VISIBLE*/
             // make text of connection
         }
         //catch(e: Exception){
         else{
+            setMessageOn(messageText, getString(R.string.connectError), Color.RED)
             //e.printStackTrace()
-            messageText.text = getString(R.string.connectError)
+            /*messageText.text = getString(R.string.connectError)
             messageText.setTextColor(Color.RED)
-            messageText.visibility = View.VISIBLE
+            messageText.visibility = View.VISIBLE*/
         }
     }
 
