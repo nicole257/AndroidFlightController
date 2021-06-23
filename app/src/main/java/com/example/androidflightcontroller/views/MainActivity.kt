@@ -28,12 +28,17 @@ class MainActivity : AppCompatActivity() {
 
         // Add connect button click listener
         findViewById<Button>(R.id.connect_button).setOnClickListener {
-            // extract strings from EditTexts
-            val ip = ipEditText.text.toString()
-            val port = portEditText.text.toString()
-            // if ip and port are valid, connect
-            if (isValidInput(ip, port)){
-                connectByInput(ip, port)
+            if (vm.isConnected()){
+                setMessageOn(getString(R.string.alreadyConnected), Color.BLACK)
+            }
+            else {
+                // extract strings from EditTexts
+                val ip = ipEditText.text.toString()
+                val port = portEditText.text.toString()
+                // if ip and port are valid, connect
+                if (isValidInput(ip, port)) {
+                    connectByInput(ip, port)
+                }
             }
         }
 
@@ -43,16 +48,14 @@ class MainActivity : AppCompatActivity() {
             try{
                 if (vm.isConnected()) {
                     vm.disconnect()
-                    messageText.text = getString(R.string.disconnectSuccess)
-                    messageText.setTextColor(Color.BLACK)
-                    messageText.visibility = View.VISIBLE
+                    setMessageOn(getString(R.string.disconnectSuccess), Color.BLACK)
                 }
-                    // make text of connection
+                else {
+                    setMessageOn(getString(R.string.alreadyDisconnected), Color.BLACK)
+                }
             }
                 catch(e: Exception){
-                    messageText.text = getString(R.string.disconnectError)
-                    messageText.setTextColor(Color.RED)
-                    messageText.visibility = View.VISIBLE
+                    setMessageOn(getString(R.string.disconnectError), Color.RED)
                 }
         }
 
@@ -66,42 +69,31 @@ class MainActivity : AppCompatActivity() {
         val seekRudder = findViewById<SeekBar>(R.id.rudder_bar)
         seekRudder?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seek: SeekBar,
-                                           progress: Int, fromUser: Boolean) {
-                val progAbs = progress.toFloat()
-                //vm.setThrottle(seekBar.progress.toFloat())
-                vm.setRudder((progAbs - 50) / 50)
-            }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                /*if (seekBar != null) {
-                    val progAbs = seekBar.progress.toFloat()
-                    vm.setRudder((progAbs - 50)/50)
-                }*/
-            }
-        })
-        // Add throttle SeekBar progress change listenetr
+                override fun onProgressChanged(seek: SeekBar,
+                                               progress: Int, fromUser: Boolean) {
+                    val progAbs = progress.toFloat()
+                    // Set value from [0, 100] to [-1, 1]
+                    vm.setRudder((progAbs - 50) / 50)
+                }
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            })
+        // Add throttle SeekBar progress change listener
         val seekThrottle = findViewById<SeekBar>(R.id.throttle_bar)
         seekThrottle?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seek: SeekBar,
-                                           progress: Int, fromUser: Boolean) {
-                val progAbs = progress.toFloat()
-                //vm.setThrottle(seekBar.progress.toFloat())
-                vm.setThrottle(progAbs/100)
-            }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-               /* if (seekBar != null) {
-                    val progAbs = seekBar.progress.toFloat()
-                    //vm.setThrottle(seekBar.progress.toFloat())
+                override fun onProgressChanged(seek: SeekBar,
+                                               progress: Int, fromUser: Boolean) {
+                    val progAbs = progress.toFloat()
+                    // Set value from [0, 100] to [0, 1]
                     vm.setThrottle(progAbs/100)
-                }*/
-            }
+                }
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
     }
 
-    // make message TextView visible with the given text and color
+    // Make message TextView visible with the given text and color
     private fun setMessageOn(text: String, color: Int){
         messageText.text = text
         messageText.setTextColor(color)
@@ -132,16 +124,6 @@ class MainActivity : AppCompatActivity() {
     }
     // Try connecting to the input ip and port
     private fun connectByInput(ip: String, port: String) {
-/*        val ipEditBox = findViewById<EditText>(R.id.ip_box)
-        val ip = ipEditBox.text.toString()
-        val portEditBox = findViewById<EditText>(R.id.port_box)
-        val port = portEditBox.text.toString()
-        val messageText = findViewById<TextView>(R.id.message)
-
-  val valid = areFieldsNotEmpty(ip, port)
-        if (!valid)
-            return*/
-
         // got ip and port
         vm.connect(ip, port)
         // wait to asynchronous connection
