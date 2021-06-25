@@ -1,20 +1,22 @@
 # AndroidFlightController
-An android app to remote control a flight simulator, at Advanced Programming 2nd course, Bar-Ilan University.
+This Android app is a remote controller for a flight.  
+Made as part of Advanced Programming 2nd course, Bar-Ilan University.  
 Created by: Nicole Sharabany and Amber Weiner.
 
 ## Overview and Features:
-Our multithread application using kotlin with the MVVM software architectural pattern.  
+Our multithread application implemented in Kotlin with the MVVM software architectural pattern.  
 Using FlightGear simulator, the program features a convenient user interface to control an aircraft.  
-The GUI contains 3 main components: 
-1. Joystick
-2. Rudder controller
-3. Throttle controller
+The GUI contains 4 main components: 
+1. Connection to a server
+2. Joystick
+3. Rudder controller
+4. Throttle controller
 
 ## Organization of the Project:
-Our project is organized in X folders:
-1. Models- 
-2. ViewModels- 
-3. Views- contains mainActivity and a Joystick class.
+Our project is organized in 3 main folders:
+1. models- ControllerModel
+2. viewModels- ControllerViewModel
+3. views- contains MainActivity and a Joystick class.
 
 ## Required Installations:
 1. Download and install FlightGear 2020.3.6 on your computer
@@ -22,13 +24,16 @@ Our project is organized in X folders:
 Notice: make sure you use an Android API level 16 and above.
 
 ## Manual:
-1. Download the repository.
-2. Launch FlightGear and use Autostart.
-3. Enter an IP number- make sure to use only digits/'.'
-4. Enter a port number- make sure to use only digits
-5. Press the "Connect" button to connect the server
-6. The simulation is on, feel free to check it out and use the different features!
-Moreover, in any case you want to disconnect from the server and reconnect afterwards, you can use the "Connect" and "Disconnect" buttons.
+1. Download the repository.  
+2. Launch FlightGear and set Settings->Additional Settings to the following: "--telnet=socket,in,10,127.0.0.1,6400,tcp".  
+3. In FlightGear- press "Fly" and wait for loading.  
+Notice: you can switch to chase view by pressing 'v' button twice.  
+4. In FlightGear- choose the aircraft name and press Autostart.  
+5. Enter an IP number- make sure to use only digits/'.'
+6. Enter a port number- make sure to use only digits
+7. Press the "Connect" button to connect the server
+8. The simulation is on, feel free to check it out and use the different features!  
+Moreover, in any case you want to disconnect from the server and reconnect afterwards, you can use the "Disconnect" and "Connect" buttons.  
 Notice: when the app is successfuly connected or disconnected, a proper massage appears.
 
 ## UML diagram:
