@@ -29,7 +29,8 @@ Notice: make sure you use an Android API level 16 and above.
 3. In FlightGear- press "Fly" and wait for loading.  
 Notice: you can switch to chase view by pressing 'v' button twice.  
 4. In FlightGear- choose the aircraft name and press Autostart.  
-5. Enter an IP number- make sure to use only digits/'.'
+5. Enter an IP number- make sure to use only digits/'.'  
+Notice: make sure you use the correct IP number of your computer (not local host). 
 6. Enter a port number- make sure to use only digits
 7. Press the "Connect" button to connect the server
 8. The simulation is on, feel free to check it out and use the different features!  
