@@ -38,6 +38,8 @@ Moreover, in any case you want to disconnect from the server and reconnect after
 Notice: when the app is successfuly connected or disconnected, a proper massage appears.
 
 ## UML diagram:
+![image](https://user-images.githubusercontent.com/63461543/123432200-c9c65980-d5d2-11eb-8a8d-d6b4e8b393b2.png)
+
 
 ## Demo:
 
