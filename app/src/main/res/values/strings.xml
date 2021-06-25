@@ -8,6 +8,10 @@
     <string name="disconnectError">Could not disconnect, please try again</string>
     <string name="connectSuccess">Connected, enjoy your flight!</string>
     <string name="connectError">Could not connect, please try again</string>
-
-
+    <string name="emptyIPField">Please enter IP address</string>
+    <string name="emptyPortField">Please enter port number</string>
+    <string name="emptyFields">Please enter IP address and port number</string>
+    <string name="invalidIP">Please enter a valid IP address</string>
+    <string name="alreadyConnected">Already connected, please disconnect before trying again</string>
+    <string name="alreadyDisconnected">You are already disconnected</string>
 </resources>
