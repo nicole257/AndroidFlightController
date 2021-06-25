@@ -25,7 +25,8 @@ Notice: make sure you use an Android API level 16 and above.
 
 ## Manual:
 1. Download the repository.  
-2. Launch FlightGear and set Settings->Additional Settings to the following: "--telnet=socket,in,10,127.0.0.1,6400,tcp".  
+2. Launch FlightGear and set Settings->Additional Settings to the following:  
+"--telnet=socket,in,10,127.0.0.1,6400,tcp".  
 3. In FlightGear- press "Fly" and wait for loading.  
 Notice: you can switch to chase view by pressing 'v' button twice.  
 4. In FlightGear- choose the aircraft name and press Autostart.  
