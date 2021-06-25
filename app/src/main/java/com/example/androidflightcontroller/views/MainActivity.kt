@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         messageText.setTextColor(color)
         messageText.visibility = View.VISIBLE
     }
+
     // Check if port and ip input are valid (not empty, and ip regex check)
     private fun isValidInput(ip: String, port: String): Boolean{
         if (areFieldsNotEmpty(ip, port))
@@ -106,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                 return true
         return false
     }
+
     // Return true if the given Strings are not empty
     private fun areFieldsNotEmpty(ip: String, port: String): Boolean{
         if (ip.isEmpty() && port.isEmpty()){
@@ -122,6 +124,7 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
     // Try connecting to the input ip and port
     private fun connectByInput(ip: String, port: String) {
         // got ip and port
