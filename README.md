@@ -7,8 +7,8 @@ Created by: Nicole Sharabany and Amber Weiner.
 Our multithread application implemented in Kotlin with the MVVM software architectural pattern.  
 Using FlightGear simulator, the program features a convenient user interface to control an aircraft.  
 The GUI contains 4 main components: 
-1. Connection to a server
-2. Joystick
+1. Connection to a server- Connect and Disconnect buttons with input validation.
+2. Joystick- controls aileron and elevator properties.
 3. Rudder controller
 4. Throttle controller
 
